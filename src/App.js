@@ -17,15 +17,16 @@ function reducer (state, action){
 
 function App() {
 
-  let [{a,b}, dispatch] = useReducer(reducer, {a:0, b:0});
-console.log(a,b);
+    let [{a,b}, dispatch] = useReducer(reducer, {a:0, b:0});
+    console.log(a,b);
+//
+    return (
+        <div >
 
-  return (
-    <div >
-        <button onClick={()=> dispatch({type: 'INC_A', payload: 1})}>click A{a}</button>
-        <button onClick={()=> dispatch({type: 'INC_B', payload: 2})}>click B{b}</button>
-    </div>
-  );
+            <button onClick={()=> dispatch({type: 'INC_A', payload: 1})}>click A{a}</button>
+            <button onClick={()=> dispatch({type: 'INC_B', payload: 2})}>click B{b}</button>
+        </div>
+    );
 }
 
 export default App;
