@@ -13,10 +13,8 @@ export default function App ()
             setUsers(val.data);
         })
     }, []);
-    //const [user, setUser] = useState({});
-    // const selectUser=(id)=>{
-    //     setUser({...users.find(val=>val.id===id)})
-    // }
+
+
 
     const [posts, setPosts] = useState([]);
     useEffect(()=>{
