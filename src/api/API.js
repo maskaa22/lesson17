@@ -6,6 +6,7 @@ let axiosInstatce = axios.create ({
 });
 const getUsers = () => axiosInstatce.get('/users');
 const getPosts = () => axiosInstatce.get('/posts');
+const getPostsofUser = (id) => axiosInstatce.get('/posts' + `?userId=${id}`);
 const getComments = () => axiosInstatce.get('/comments');
 
-export {getUsers, getPosts, getComments}
+export {getUsers, getPosts, getComments, getPostsofUser}

@@ -13,6 +13,10 @@ export default function App ()
             setUsers(val.data);
         })
     }, []);
+    //const [user, setUser] = useState({});
+    // const selectUser=(id)=>{
+    //     setUser({...users.find(val=>val.id===id)})
+    // }
 
     const [posts, setPosts] = useState([]);
     useEffect(()=>{
@@ -30,7 +34,6 @@ export default function App ()
 
 
 
-
     return(
         <Router>
             <div>
@@ -42,7 +45,7 @@ export default function App ()
 
                     <Route path={'/'} exact render={()=>{return <div>home</div>}}/>
                     <Route path={'/users'} render={()=>{
-                        return <Users items={users}/>
+                        return <Users items={users} />
                     }}/>
                     <Route path={'/posts'}>
                         <Posts items={posts}/>
