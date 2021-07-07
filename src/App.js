@@ -1,32 +1,58 @@
+import {BrowserRouter as Router,Route, Link} from "react-router-dom";
+import Users from "./components/users/Users";
+import Posts from "./components/posts/Posts";
+import Comments from "./components/comments/Comments";
+import {useEffect, useState} from "react";
+import {getComments, getPosts, getUsers} from "./components/api/API";
 
-import './App.css';
-import {useReducer} from "react";
+export default function App ()
+{
+    const [users, setUsers] = useState([]);
+    useEffect(()=>{
+        getUsers().then(val=> {
+            setUsers(val.data);
+        })
+    }, []);
 
-function reducer (state, action){
-    switch (action.type)
-    {
-        case 'INC_A':
-            return {...state, a:state.a + action.payload};
-        case 'INC_B':
-            return {...state, b:state.b + action.payload};
-        default:
-            return {...state};
-    }
-}
+    const [posts, setPosts] = useState([]);
+    useEffect(()=>{
+        getPosts().then(value => {
+            setPosts(value.data)
+        })
+    }, []);
+
+    const [comments, setComments] = useState([]);
+    useEffect(()=> {
+        getComments().then(value => {
+            setComments(value.data);
+        })
+    }, [])
 
 
-function App() {
 
-    let [{a,b}, dispatch] = useReducer(reducer, {a:0, b:0});
-    console.log(a,b);
-//
-    return (
-        <div >
 
-            <button onClick={()=> dispatch({type: 'INC_A', payload: 1})}>click A{a}</button>
-            <button onClick={()=> dispatch({type: 'INC_B', payload: 2})}>click B{b}</button>
-        </div>
+    return(
+        <Router>
+            <div>
+
+                    <div><Link to="/">Home page</Link></div>
+                    <div><Link to="/users">Users page</Link></div>
+                    <div><Link to="/posts">Posts page</Link></div>
+                    <div><Link to="/comments">Comments page</Link></div>
+
+                    <Route path={'/'} exact render={()=>{return <div>home</div>}}/>
+                    <Route path={'/users'} render={()=>{
+                        return <Users items={users}/>
+                    }}/>
+                    <Route path={'/posts'}>
+                        <Posts items={posts}/>
+                    </Route>
+
+                    <Route path={'/comments'}>
+                        <Comments items={comments}/>
+                    </Route>
+
+            </div>
+        </Router>
     );
 }
-
-export default App;
