@@ -3,7 +3,7 @@ import Users from "./components/users/Users";
 import Posts from "./components/posts/Posts";
 import Comments from "./components/comments/Comments";
 import {useEffect, useState} from "react";
-import {getComments, getPosts, getUsers} from "./components/api/API";
+import {getComments, getPosts, getUsers} from "./api/API";
 
 export default function App ()
 {
